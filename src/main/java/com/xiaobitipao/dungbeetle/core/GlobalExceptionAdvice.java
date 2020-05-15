@@ -64,6 +64,9 @@ public class GlobalExceptionAdvice {
         return entity;
     }
 
+    /**
+     * body 参数校验异常
+     */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseBody
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
@@ -77,14 +80,18 @@ public class GlobalExceptionAdvice {
         return new UnifyResponse(10001, message, method + " " + requestUrl);
     }
 
+    /**
+     * 查询参数校验异常
+     */
     @ExceptionHandler(ConstraintViolationException.class)
-    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     @ResponseBody
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     public UnifyResponse handleConstraintException(HttpServletRequest req, ConstraintViolationException e) {
         String requestUrl = req.getRequestURI();
         String method = req.getMethod();
+        // 如果 e.getMessage() 返回的消息格式不满足需求的话
+        // 需要通过循环 e.getConstraintViolations() 并调用 getMessage() 方法编辑消息
         String message = e.getMessage();
-
         return new UnifyResponse(10001, message, method + " " + requestUrl);
     }
 
