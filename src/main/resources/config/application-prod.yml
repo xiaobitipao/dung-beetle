@@ -1,0 +1,15 @@
+server:
+  port: 8081
+
+spring:
+  # 数据库连接(只用于连接数据库)
+  datasource:
+    url: jdbc:mysql://localhost:3306/dungbeetle?characterEncoding=utf-8&serverTimezone=GMT%2B8
+    username: root
+    password: 1qazcde3
+  # jpa配置(如果使用jpa的话除了配置数据库连接还要配置jpa)
+  jpa:
+    properties:
+      hibernate:
+        show_sql: false
+        format_sql: false

@@ -1,0 +1,18 @@
+dungbeetle:
+  # Controller 所在包的包前缀，用于 RequestMapping 前缀自动追加
+  api-package: com.xiaobitipao.dungbeetle
+
+spring:
+  profiles:
+    active: dev
+  jpa:
+    hibernate:
+      # 关闭 ddl 创建
+      ddl-auto: none
+  jackson:
+    #### 由于在 BaseEntity 中已经配置了 @JsonIgnore 注解，所以 createTime 等字段是不显示的
+    # 将序列化器的返回值的属性名从驼峰形式改为蛇形
+    property-naming-strategy: SNAKE_CASE
+    # 将序列化器的返回值的时间格式从标准格式(格林威治时间)改为时间戳形式(从1970/01/01开始的秒数)，这样前端处理起来会容易
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: true
