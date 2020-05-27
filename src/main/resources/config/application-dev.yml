@@ -13,3 +13,21 @@ spring:
       hibernate:
         show_sql: true
         format_sql: true
+
+# 微信相关配置
+# 该配置不应该在 GitHub 管理
+wx:
+  # 参考: https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/login/auth.code2Session.html
+  # 小程序 appId
+  appid: <Change Me>
+  # 小程序 appSecret
+  appsecret: <Change Me>
+  # 登录凭证校验 url
+  code2SessionUrl: https://api.weixin.qq.com/sns/jscode2session?appid={0}&secret={1}&js_code={2}&grant_type=authorization_code
+
+dungbeetle:
+  # token 认证信息
+  security:
+    jwt-key: <Change Me>
+    # 单位: 秒
+    token-expired-time-in: 86400

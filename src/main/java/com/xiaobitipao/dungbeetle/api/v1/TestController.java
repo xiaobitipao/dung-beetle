@@ -1,11 +1,10 @@
 package com.xiaobitipao.dungbeetle.api.v1;
 
-import com.xiaobitipao.dungbeetle.dto.PersonDTO;
-import org.springframework.validation.annotation.Validated;
+import com.xiaobitipao.dungbeetle.core.interceptors.ScopeLevel;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.Max;
 import java.util.Map;
+import java.util.Properties;
 
 @RestController
 @RequestMapping("/test")
@@ -20,7 +19,10 @@ public class TestController {
     }
 
     @PostMapping("/sample/test2")
-    public PersonDTO getParam1(@RequestBody @Validated PersonDTO person) {
-        return person;
+    @ScopeLevel()
+    public Properties getParam1() {
+        Properties prop = new Properties();
+        prop.put("key1", "value1");
+        return prop;
     }
 }
